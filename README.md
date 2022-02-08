@@ -31,10 +31,14 @@ This is only the summary of lecture notes not a complete one. They may have typo
 
 I use [this](https://github.com/vEnhance/napkin/) to organize my notes.
 
+Not available at this point.
+
+<!---
  - [ENEE621](Notes) - This is a summary of notes for the lectures from ENEE621 Spring 2020 @ UMD
  - [CMSC666](Notes) - This is the lecture notes taken from CMSC666 Fall 2020 @ UMD
  - [ENEE627](Notes) - This is the lecture notes taken from ENEE627 Spring 2021 @ UMD
  - [ENEE662](Notes) - This is the lecture notes taken from ENEE662 Fall 2021 @ UMD
+--->
 
 ## Templates
 They are not complete enough to publish but are good enough for my own use. You can contact me if you have any problems in using them.
@@ -48,4 +52,4 @@ They are not complete enough to publish but are good enough for my own use. You 
  **[preamble.tex](Templates)** - Packages
 
 ----
-Last Updated: Feb. 8, 2022 by Yutao Chen.
+Last Updated: Feb. 8 2022 by Yutao Chen.
