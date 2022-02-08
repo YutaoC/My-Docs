@@ -1,0 +1,420 @@
+% font
+\usepackage{helvet}
+
+% Packages
+\usepackage{bbm}
+\usepackage{pgfpages}
+\usepackage[most]{tcolorbox}
+
+\tcbuselibrary{skins}
+\usetikzlibrary{shadings}
+
+% Dark = 0
+% Light = 1
+\edef\style{1}
+
+\ifcase\style
+\definecolor{MyGreen}{RGB}{48, 209, 88}
+\definecolor{MyRed}{RGB}{225, 69, 58}
+\definecolor{MyBlue}{RGB}{10, 132, 255}
+\definecolor{MyYellow}{RGB}{255, 214, 10}
+\definecolor{MyOrange}{RGB}{255, 159, 10}
+\definecolor{MyWhite}{RGB}{229, 229, 234}
+\definecolor{MyWhite2}{RGB}{174, 174, 178}
+\definecolor{MyBlack}{RGB}{28, 28, 30}
+\or
+\definecolor{MyGreen}{RGB}{52, 199, 89}
+\definecolor{MyRed}{RGB}{225, 59, 48}
+\definecolor{MyBlue}{RGB}{0, 122, 255}
+\definecolor{MyYellow}{RGB}{255, 204, 0}
+\definecolor{MyOrange}{RGB}{255, 149, 0}
+\definecolor{MyWhite}{RGB}{44, 44, 46}
+\definecolor{MyWhite2}{RGB}{99, 99, 102}
+\definecolor{MyBlack}{RGB}{242, 242, 247}
+\definecolor{MyBlack2}{RGB}{229, 229, 234}
+\fi
+
+% block style
+\newtcolorbox{eqblock}[1][]{
+ colback=MyBlack,
+ width=\textwidth,
+ colframe=MyRed,
+ fontupper=\color{MyWhite2},
+ after=,% <----- remove the default \par
+}
+
+\iffalse
+\newtcolorbox[auto counter]{theorem}[2][]{
+    colback=MyBlack, 
+    colframe=MyRed,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Theorem~\thetcbcounter . (\textit{#2}), #1
+    }
+    
+\newtcolorbox[auto counter]{proposition}[2][]{%
+    colback=MyBlack, 
+    colframe=MyRed,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Proposition~\thetcbcounter . (\textit{#2}), #1
+    }
+    
+\newtcolorbox[auto counter]{corollary}[2][]{%
+    colback=MyBlack, 
+    colframe=MyRed,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Corollary~\thetcbcounter . (\textit{#2}), #1
+    }
+    
+\newtcolorbox[auto counter]{lemma}[2][]{%
+    colback=MyBlack, 
+    colframe=MyRed,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Lemma~\thetcbcounter . (\textit{#2}), #1
+    }
+    
+\newtcolorbox[auto counter]{definition}[2][]{%
+    colback=MyBlack, 
+    colframe=MyOrange,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Definition~\thetcbcounter . (\textit{#2}), #1
+    }
+
+\newtcolorbox[auto counter]{assumption}[2][]{%
+    colback=MyBlack, 
+    colframe=MyOrange,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Assumption~\thetcbcounter . (\textit{#2}), #1
+    }
+    
+\newtcolorbox[auto counter]{remark}[0]{%
+    colback=MyBlack, 
+    colframe=MyYellow,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Remark~\thetcbcounter ,
+    }
+    
+\newtcolorbox{example}[2][]{%
+    colback=MyBlack, 
+    colframe=MyGreen,
+    fonttitle=\bfseries,
+    coltitle=MyWhite,
+    colbacktitle=MyBlack,
+    fontupper=\color{MyWhite2},
+    enhanced,
+    attach boxed title to top left={yshift=-2mm, xshift=0.5cm},
+    title=Example - #2, #1
+    }
+\fi
+
+% Slove the Auto counting issue caused by \pause
+\makeatletter
+\def\tcb@proc@counter@auto#1{%
+  \newcounter{tcb@cnt@#1}%
+  \csxdef{tcb@cnt@#1}{tcb@cnt@#1}%
+  \tcb@proc@counter@autoanduse{#1}%
+  \ifcsname resetcounteronoverlays\endcsname%<-added
+  \resetcounteronoverlays{tcb@cnt@#1}%<-added
+  \fi%<-added
+}    
+
+\newtcolorbox[auto counter]{theorem}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyRed},
+  title=Theorem~\numchap .\thetcbcounter ~ (\textit{#2}), #1
+}
+
+\newtcolorbox[auto counter]{proposition}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyRed},
+  title=Proposition~\numchap .\thetcbcounter ~ (\textit{#2}), #1
+}
+
+\newtcolorbox[auto counter]{corollary}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyRed},
+  title=Corollary~\numchap .\thetcbcounter ~ (\textit{#2}), #1
+}
+ 
+\newtcolorbox[auto counter]{lemma}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyRed},
+  title=Lemma~\numchap .\thetcbcounter ~ (\textit{#2}), #1
+}
+
+\newtcolorbox[auto counter]{definition}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyOrange},
+  title=Definition~\numchap .\thetcbcounter ~ (\textit{#2}), #1
+}
+      
+\newtcolorbox[auto counter]{assumption}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyOrange},
+  title=Assumption~\numchap .\thetcbcounter ~ (\textit{#2}), #1
+}
+
+\newtcolorbox[auto counter]{remark}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyYellow},
+  title=Remark~\numchap .\thetcbcounter ,
+}
+    
+\newtcolorbox[auto counter]{example}[2][]{
+  empty,
+  frame engine=path,
+  colframe=MyBlack2,
+  % sharp corners=west,
+  attach boxed title to top left={yshift*=-\tcboxedtitleheight},
+  boxed title style={top=2pt, left=2pt},
+  coltitle=MyWhite,
+  top=0pt,
+  bottom = 1pt,
+  fonttitle=\bfseries\sffamily,
+  drop fuzzy shadow,
+  fontupper=\color{MyWhite2},
+  borderline={1.5pt}{0pt}{MyGreen},
+  title=Example - #2, #1
+}
+
+\newtcolorbox{figures}{
+    width=0.7\textheight,
+    arc=0pt,
+    boxsep=0pt,
+    enhanced,
+    drop fuzzy shadow,
+    left=0pt,right=0pt,top=0pt,bottom=0pt,
+}
+    
+    
+% Page Title
+\iffalse
+\defbeamertemplate*{title page}{customized}[1][]
+{
+  \usebeamerfont{logo}\insertlogo\par
+  \usebeamerfont{title}\textcolor{MyBlue}{\textbf{\Huge\MakeUppercase\inserttitle}}\par
+  \bigskip
+  \usebeamerfont{author}\insertauthor\par
+  \bigskip
+  \usebeamerfont{institute}\insertinstitute\par
+  \bigskip
+  \usebeamerfont{date}\insertdate\par
+  \vspace{-20ex}
+}
+\fi
+
+\defbeamertemplate*{title page}{customized}[1][]
+{
+\begin{minipage}[t][\paperheight][t]{\dimexpr\paperwidth-1cm\relax}%
+    \vskip2em\par%
+    \usebeamerfont{logo}\insertlogo\par
+    \bigskip
+    \bigskip
+    \bigskip
+    \bigskip
+  	\usebeamerfont{title}\textcolor{MyBlue}{\textbf{\LARGE\inserttitle}}\par
+  \bigskip
+  \usebeamerfont{author}\insertauthor\par
+  \bigskip
+  \usebeamerfont{institute}\insertinstitute\par
+  \bigskip
+  \usebeamerfont{date}\insertdate\par
+\end{minipage}%
+}
+
+% Descriptive item
+\setbeamertemplate{description item}{\color{MyWhite}\textbf\insertdescriptionitem}
+
+% Frame Title Styling
+\setbeamertemplate{frametitle}
+{
+  \ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+  \@tempdima=\textwidth%
+  \advance\@tempdima by\beamer@leftmargin%
+  \advance\@tempdima by\beamer@rightmargin%
+  \begin{beamercolorbox}[sep=0.3cm,left,wd=\the\@tempdima]{frametitle}
+    \vbox{}\vskip-1ex%
+    \if@tempswa\else\csname beamer@fteleft\endcsname\fi%
+    {\strut\textbf\insertframetitle\strut\par%
+    {%
+      \ifx\insertframesubtitle\@empty%
+      \else%
+      {\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+      \fi
+    }%
+    \vskip-1.5ex%
+    \rule{\dimexpr\paperwidth-0.6cm\relax}{0pt}}
+    \if@tempswa\else\vskip-.3cm\fi% set inside beamercolorbox... evil here...
+  \end{beamercolorbox}%
+    %
+}
+
+% No Navigation Bar
+\beamertemplatenavigationsymbolsempty
+
+% Foot line Setting
+\setbeamercolor{myfootlinetext}{fg=gray}
+\setbeamercolor{myfootlinenumber}{fg=MyBlue}
+\let\footnoterule\relax
+\setbeamerfont{footline}{size=\fontsize{6}{6}\selectfont}
+\setbeamertemplate{footline}
+{
+    \leavevmode
+    \hbox{
+		\begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,left]{myfootlinetext}
+           ~~~~~\namechap
+        \end{beamercolorbox}    
+    
+        \begin{beamercolorbox}[wd=.75\paperwidth,ht=2.25ex,dp=1ex,right]{myfootlinetext}
+           \insertsection \space{} \vrule \space{}
+        \end{beamercolorbox}
+        
+         \begin{beamercolorbox}[wd=.01\paperwidth,ht=2.25ex,dp=1ex,right]{myfootlinenumber}
+           \insertframenumber{}
+        \end{beamercolorbox}}
+        \vskip5pt
+    }
+    \makeatother
+
+% Theme color
+\usecolortheme[named=MyBlue]{structure}
+
+% Content size, font ans style
+\setbeamerfont{normal text}{size=\footnotesize}
+\AtBeginDocument{\usebeamerfont{normal text}}
+\usefonttheme[onlymath]{serif}
+\useinnertheme{circles}
+\setbeamertemplate{enumerate items}[default]
+\setbeamertemplate{section in toc}{\Huge\inserttocsectionnumber.~\inserttocsection}
+\setbeamertemplate{caption}[numbered]
+\setbeamerfont{title}{size=\Huge}
+\setbeamerfont{author}{size=\small,parent=serif}
+\setbeamerfont{institute}{size=\small,parent=serif}
+\setbeamerfont{date}{size=\small,parent=serif}
+\setbeamerfont{footnote}{size=\tiny}
+\setbeamertemplate{itemize/enumerate subbody begin}{\footnotesize}
+
+% Utility definition
+\def\vfilll{\vskip 0pt plus 1filll minus 0pt }
+\newcommand{\primary}[1]{\textbf{\textcolor{MyWhite}{#1}}}
+\newcommand{\blue}[1]{\textcolor{MyBlue}{#1}}
+\newcommand{\newparagraph}[1]{{\normalsize \textbf{\textcolor{MyWhite}{#1}}}}
+\newcommand{\sep}{\textcolor{MyBlue}{$\bullet$}}
+\newcommand\blfootnote[1]{%
+  \begingroup
+  \renewcommand\thefootnote{}\footnote{#1}%
+  \addtocounter{footnote}{-1}%
+  \endgroup
+}
+\newcommand\ddfrac[2]{\frac{\displaystyle #1}{\displaystyle #2}}
