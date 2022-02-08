@@ -23,16 +23,18 @@ Topics that are independent of each other, I will try to combine them once there
 - [Markov Decision Process](Topics/MDP.pdf) - This is an introductory tutorial on Markov Decision Process
 - [Discrete Time Markov Chain](Topics/DTMC.pdf) - This is an introductory but, in my opinion, very dense tutorial on Time Markov Chain
 - [Duality](Topics/Duality.pdf) - This is an introductory tutorial
-- [Newton's Method](Topic/NewtonMethod.pdf) - This is an introductory tutorial
-- [Queueing Theory](Topic/Queue.pdf) - Notes taken from an [online mini-course](https://www.cse.wustl.edu/~jain/queue/)
+- [Newton's Method](Topics/NewtonMethod.pdf) - This is an introductory tutorial
+- [Queueing Theory](Topics/Queue.pdf) - Notes taken from an [online mini-course](https://www.cse.wustl.edu/~jain/queue/)
 
 ## Lecture Notes
 This is only the summary of lecture notes not a complete one. They may have typos and are hardly updated after being uploaded.
 
- - [ENEE621](Notes/ENEE621.pdf) - This is a summary of notes for the lectures from ENEE621 Spring 2020 @ UMD.
- - [CMSC666](Notes/CMSC666.pdf) - This is the lecture notes taken from CMSC666 Fall 2020 @ UMD.
- - [ENEE627](Notes/ENEE627.pdf) - This is the lecture notes taken from ENEE627 Spring 2021 @ UMD.
- - [ENEE662](Notes/ENEE662.pdf) - This is the lecture notes taken from ENEE662 Fall 2021 @ UMD.
+I use [this](https://github.com/vEnhance/napkin/) to organize my notes.
+
+ - [ENEE621](Notes) - This is a summary of notes for the lectures from ENEE621 Spring 2020 @ UMD
+ - [CMSC666](Notes) - This is the lecture notes taken from CMSC666 Fall 2020 @ UMD
+ - [ENEE627](Notes) - This is the lecture notes taken from ENEE627 Spring 2021 @ UMD
+ - [ENEE662](Notes) - This is the lecture notes taken from ENEE662 Fall 2021 @ UMD
 
 ## Templates
 They are not complete enough to publish but are good enough for my own use. You can contact me if you have any problems in using them.
@@ -41,7 +43,9 @@ They are not complete enough to publish but are good enough for my own use. You 
  - [Slide](Templates/Slide) - This Latex template is made for slide show
      - [Short](Templates/Slide/Short) - For a single short topic
      - [Long](Templates/Slide/Long) - Combine several topics
- - [Poster](Templates/Poster) - This Latex template is made for crating a poster
+ - [Poster](Templates/Poster) - This Latex template is made for crating a poster (This is made based on [this template]())
+ 
+ **[preamble.tex](Templates)** - Packages
 
 ----
 Last Updated: Feb. 8, 2022 by Yutao Chen.
