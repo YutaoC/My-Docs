@@ -48,6 +48,7 @@ They are not complete enough to publish but are good enough for my own use. You 
      - [Short](Templates/Slide/Short) - For a single short topic
      - [Long](Templates/Slide/Long) - Combine several topics
  - [Poster](Templates/Poster) - This Latex template is made for crating a poster (This is made based on [this template]())
+ - [Homework](Templates/Homework) - This is a Latex template for writting formatted homework solutions.
  
  **[preamble.tex](Templates)** - Packages
 
